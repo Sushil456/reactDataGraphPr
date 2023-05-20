@@ -1,59 +1,90 @@
-import { useState } from "react"
+import { useState } from "react";
 
-export const Reactself =({firstname, age, country})=>{
+export const Reactself =()=>{
 
-  const [love, setlove] = useState(0)
-  const name = ['sushil', 'rahul', 'satish', 'sanvi', 'sunil', 'rajmuni', 'kanchan']
-
-
+  
   const students = [
     {id:1, firstname:'sushil', age:23, country:'india'},
     {id:2, firstname:'Rahul', age:23, country:'Mumbai'},
     {id:3, firstname:'Jyoti', age:23, country:'bangaldesh'},
     {id:4, firstname:'Kaalia', age:23, country:'UK'},
   ]
-  const increaselove = ()=>{
-    setlove(love +1)
-
-  }
   
-  const takelove = ()=>{
-    setlove(love === 0 ? 0 : love -1)
-  }
+  const [selectedStudent, setSelectedStudent] = useState(null);
 
+  const showDetails = (student) => {
+    setSelectedStudent(student);
+  };
+
+  const closeDetails = () => {
+    setSelectedStudent(null);
+  };
 
   
 
 
   return(
     <>
-      
-      <h2 style={{color:"red"}}>Love : {love}</h2>
-      <button onClick={increaselove}>Give Love</button>
-      <button onClick={takelove}>Give Hate</button>
 
-      {name && name.length > 0 ? 
-      (<div>
-        <h2>Data:</h2>
-        <ul>{name.map((item, index)=>(<li key={index}> {item} </li>))}</ul>
-      </div>):(<p> No data Available </p>)
-      }
-
-      <div>
-        <h2>{firstname}</h2>
-        <h4>{age}</h4>
-        <p>{country}</p>
+    {/* <h1>Students Details </h1>
+    {students.map((student)=>(
+      <div key={student.id}>
+        <h2>{student.firstname}</h2>
+        <h3>{student.age}</h3>
+        <p>{student.country}</p>
       </div>
-       
+    ))} */}
 
-      {students && students.map((student) =>(
-        <Reactself 
-        key={student.id}
-        firstname={student.firstname}
-        age={student.age}
-        country={student.country} 
-        />
-      ))}
+    {/* <h1>Student Details</h1> */}
+      {/* <table className="table">
+        <thead><tr><th>#</th><th>Name</th><th>Age</th><th>Country</th></tr></thead>
+        <tbody>
+          {students.map((student) => (
+            <tr key={student.id}>
+              <th scope="row">{student.id}</th>
+              <td>{student.firstname}</td>
+              <td>{student.age}</td>
+              <td>{student.country}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table> */}
+      
+      <div className="container">
+      <h1>Student Details</h1>
+      <table className="table table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Country</th>
+          </tr>
+        </thead>
+        <tbody>
+          {students.map((student) => (
+            <tr key={student.id} onClick={() => showDetails(student)} data-bs-toggle="tooltip" data-bs-placement="right" title="Click to view details">
+              <th scope="row">{student.id}</th>
+              <td>{student.firstname}</td>
+              <td>{student.age}</td>
+              <td>{student.country}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      {selectedStudent && (
+        <div className="card floating-card">
+          <div className="card-body">
+            <h5 className="card-title">{selectedStudent.firstname}</h5>
+            <h6 className="card-subtitle mb-2 text-muted">Age: {selectedStudent.age}</h6>
+            <p className="card-text">Country: {selectedStudent.country}</p>
+            <button className="btn btn-secondary" onClick={closeDetails}>Close</button>
+          </div>
+        </div>
+      )}
+      </div>
+      
 
     
     </>
