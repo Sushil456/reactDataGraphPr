@@ -1,3 +1,5 @@
+import { useState } from "react"
+
 export const Reactself =(props)=>{
 
   const {firstName, age, company} = props
@@ -10,6 +12,13 @@ export const Reactself =(props)=>{
     console.log(event.target.value);
   }
 
+
+  const [counter, setCounter] = useState(0);
+
+  const increment =()=>{
+    setCounter(counter + 1);
+    console.log(counter)
+  }
   return(
     <>
       <h2>{firstName}</h2>
@@ -24,6 +33,8 @@ export const Reactself =(props)=>{
     <h4>Text Box value</h4>
     <input onChange={onTextChange} />
 
+    <button onClick = {increment} >increment</button>
+    <p> {counter}</p>
     </>
   )
 }
