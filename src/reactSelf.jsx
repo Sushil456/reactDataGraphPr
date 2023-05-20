@@ -1,40 +1,61 @@
 import { useState } from "react"
 
-export const Reactself =(props)=>{
+export const Reactself =({firstname, age, country})=>{
 
-  const {firstName, age, company} = props
+  const [love, setlove] = useState(0)
+  const name = ['sushil', 'rahul', 'satish', 'sanvi', 'sunil', 'rajmuni', 'kanchan']
 
-  const showAlert = ()=>{
-    alert("please support me ")
+
+  const students = [
+    {id:1, firstname:'sushil', age:23, country:'india'},
+    {id:2, firstname:'Rahul', age:23, country:'Mumbai'},
+    {id:3, firstname:'Jyoti', age:23, country:'bangaldesh'},
+    {id:4, firstname:'Kaalia', age:23, country:'UK'},
+  ]
+  const increaselove = ()=>{
+    setlove(love +1)
+
+  }
+  
+  const takelove = ()=>{
+    setlove(love === 0 ? 0 : love -1)
   }
 
-  const onTextChange = (event)=>{
-    console.log(event.target.value);
-  }
+
+  
 
 
-  const [counter, setCounter] = useState(0);
-
-  const increment =()=>{
-    setCounter(counter + 1);
-    console.log(counter)
-  }
   return(
     <>
-      <h2>{firstName}</h2>
-      <p>{age}</p>
-      <p>{company}</p>
+      
+      <h2 style={{color:"red"}}>Love : {love}</h2>
+      <button onClick={increaselove}>Give Love</button>
+      <button onClick={takelove}>Give Hate</button>
 
+      {name && name.length > 0 ? 
+      (<div>
+        <h2>Data:</h2>
+        <ul>{name.map((item, index)=>(<li key={index}> {item} </li>))}</ul>
+      </div>):(<p> No data Available </p>)
+      }
 
-    <button onClick={showAlert} > Click Me </button>
-    <button onClick={()=>alert("this is the best way to prompt")} > Click Me </button>
-    <button onClick={()=>alert("how to get that money")} > Click Me </button>
+      <div>
+        <h2>{firstname}</h2>
+        <h4>{age}</h4>
+        <p>{country}</p>
+      </div>
+       
 
-    <h4>Text Box value</h4>
-    <input onChange={onTextChange} />
+      {students && students.map((student) =>(
+        <Reactself 
+        key={student.id}
+        firstname={student.firstname}
+        age={student.age}
+        country={student.country} 
+        />
+      ))}
 
-    <button onClick = {increment} >increment</button>
-    <p> {counter}</p>
+    
     </>
   )
 }
