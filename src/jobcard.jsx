@@ -1,22 +1,28 @@
-
 import './jobcard.css'
-
+import { SingleCard } from './singlecard'
 
 export const Jobcard =()=>{
     return (<>
-        <div class="container">
-  <div class="card">
-    <div class="card-header">
-      <span class="badge bg-primary">View</span>
-    </div>
-    <div class="card-body">
-      <h5 class="card-title">Job Title</h5>
-      <p class="card-subtitle">Job Start Date</p>
-      <p class="card-text">Total Vacancy</p>
-      <button class="btn btn-primary">View Details</button>
-    </div>
-  </div>
-</div>
+        
+        <SingleCard title={"SI Officer "} publisher={"BPSC"} view={"12300"}/>
+        <SingleCard title={"Sub divisional Clerk"} publisher={"UPPSC"} view={"4700"}/>
+        <SingleCard title={"General Typist job"} publisher={"JSSC"} view={"9080"}/>
+        
 
-    </>)
+      
+        <div class="container">
+          <div class="row">
+            <div class="col">
+
+        <SingleCard title={"pub sanitary officer"} publisher={"SSC"} view={"1000"}/>
+            </div>
+          </div>
+        </div>
+    
+        
+
+   
+
+
+</>)
 }
