@@ -6,6 +6,10 @@ export const Reactself =(props)=>{
     alert("please support me ")
   }
 
+  const onTextChange = (event)=>{
+    console.log(event.target.value);
+  }
+
   return(
     <>
       <h2>{firstName}</h2>
@@ -17,6 +21,8 @@ export const Reactself =(props)=>{
     <button onClick={()=>alert("this is the best way to prompt")} > Click Me </button>
     <button onClick={()=>alert("how to get that money")} > Click Me </button>
 
+    <h4>Text Box value</h4>
+    <input onChange={onTextChange} />
 
     </>
   )
